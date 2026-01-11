@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlphaTrade Pro | Master Stock Market & F&O Trading</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+        
+        :root {
+            --primary: #0056ff;
+            --primary-dark: #003dbf;
+            --secondary: #00d4aa;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--light);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--dark);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding-top: 150px;
+            padding-bottom: 100px;
+            background: linear-gradient(135deg, #f5f7ff 0%, #e9edff 100%);
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
+        }
+        
+        .hero-text h1 {
+            font-size: 3.2rem;
+            line-height: 1.2;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+        
+        .hero-text h1 span {
+            color: var(--primary);
+        }
+        
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 86, 255, 0.2);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(0, 86, 255, 0.05);
+            transform: translateY(-3px);
+        }
+        
+        /* Value Proposition */
+        .value-proposition {
+            background-color: white;
+        }
+        
+        .usp-container {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 15px;
+            padding: 60px;
+            color: white;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .usp-container::before {
+            content: "";
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            top: -100px;
+            right: -100px;
+        }
+        
+        .usp-container::after {
+            content: "";
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            bottom: -75px;
+            left: -75px;
+        }
+        
+        .usp-container h3 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .usp-container p {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .usp-tag {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--dark);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Problem & Solution */
+        .problem-solution {
+            background-color: #f8fafc;
+        }
+        
+        .ps-container {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .problem, .solution {
+            flex: 1;
+        }
+        
+        .problem-card, .solution-card {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            height: 100%;
+        }
+        
+        .problem-card h3, .solution-card h3 {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .problem-card h3 i, .solution-card h3 i {
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .problem-card h3 i {
+            color: var(--danger);
+        }
+        
+        .solution-card h3 i {
+            color: var(--success);
+        }
+        
+        .problem-list, .solution-list {
+            list-style: none;
+        }
+        
+        .problem-list li, .solution-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .problem-list li:last-child, .solution-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .problem-list li i, .solution-list li i {
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .problem-list li i {
+            color: var(--danger);
+        }
+        
+        .solution-list li i {
+            color: var(--success);
+        }
+        
+        /* Features & Benefits */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+        
+        .feature-icon i {
+            font-size: 1.8rem;
+            color: white;
+        }
+        
+        .feature-card h4 {
+            font-size: 1.4rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .feature-card p {
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+        
+        .feature-benefit {
+            color: var(--success);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-benefit i {
+            margin-right: 8px;
+        }
+        
+        /* Social Proof */
+        .social-proof {
+            background-color: #f8fafc;
+        }
+        
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .author-img i {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .author-info h5 {
+            font-size: 1.1rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .stat-text {
+            color: var(--gray);
+            font-weight: 500;
+        }
+        
+        /* Trust Signals */
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .badge {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            min-width: 200px;
+        }
+        
+        .badge-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+        
+        .badge-text {
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        /* Lead Capture */
+        .lead-capture {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .lead-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .lead-container .section-title h2 {
+            color: white;
+        }
+        
+        .lead-container .section-title p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .lead-form {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin-top: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 86, 255, 0.1);
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .form-footer {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: var(--gray);
+            text-align: center;
+        }
+        
+        .form-footer a {
+            color: var(--primary);
+        }
+        
+        /* FAQ */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 20px;
+            background-color: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .faq-question i {
+            transition: var(--transition);
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+            background-color: #f9f9f9;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 500px;
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h4 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+            }
+            
+            .hero-text {
+                text-align: center;
+                margin-bottom: 50px;
+            }
+            
+            .ps-container {
+                flex-direction: column;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .usp-container {
+                padding: 40px 20px;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            
+            .usp-container h3 {
+                font-size: 1.8rem;
+            }
+            
+            .feature-card, .testimonial-card, .problem-card, .solution-card {
+                padding: 25px;
+            }
+            
+            .lead-form {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-chart-line"></i>Alpha<span>Trade</span>Pro
+                </a>
+                
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#testimonials">Success Stories</a></li>
+                    <li><a href="#pricing">Courses</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+                
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Master the Stock Market & <span>Maximize Your Returns</span></h1>
+                    <p>Join 50,000+ successful traders who learned to profit consistently in bull and bear markets with our proven F&O and stock market strategies.</p>
+                    
+                    <div class="cta-buttons">
+                        <a href="#lead-form" class="btn btn-primary">Get Free Masterclass</a>
+                        <a href="#features" class="btn btn-secondary">Explore Courses</a>
+                    </div>
+                    
+                    <div style="margin-top: 30px; display: flex; align-items: center; gap: 15px;">
+                        <div style="display: flex;">
+                            <i class="fas fa-star" style="color: #ffc107;"></i>
+                            <i class="fas fa-star" style="color: #ffc107;"></i>
+                            <i class="fas fa-star" style="color: #ffc107;"></i>
+                            <i class="fas fa-star" style="color: #ffc107;"></i>
+                            <i class="fas fa-star" style="color: #ffc107;"></i>
+                        </div>
+                        <span>4.9/5 from 3,500+ verified reviews</span>
+                    </div>
+                </div>
+                
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Stock Market Dashboard">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Proposition -->
+    <section class="value-proposition">
+        <div class="container">
+            <div class="usp-container">
+                <h3>Transform Your Trading in Just 90 Days</h3>
+                <p>Our <strong>structured learning path</strong> takes you from beginner to confident trader with live mentorship, real-time trading signals, and a proven system that works in all market conditions.</p>
+                <div class="usp-tag">90% Success Rate | 1-on-1 Mentorship | Live Trading Sessions</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem & Solution -->
+    <section class="problem-solution" id="problem-solution">
+        <div class="container">
+            <div class="section-title">
+                <h2>The Trading Dilemma & Our Solution</h2>
+                <p>Most traders fail due to common pitfalls. We provide a systematic solution.</p>
+            </div>
+            
+            <div class="ps-container">
+                <div class="problem">
+                    <div class="problem-card">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Why 90% of Traders Fail</h3>
+                        <ul class="problem-list">
+                            <li><i class="fas fa-times-circle"></i> No structured learning approach</li>
+                            <li><i class="fas fa-times-circle"></i> Emotional trading decisions</li>
+                            <li><i class="fas fa-times-circle"></i> Lack of risk management strategies</li>
+                            <li><i class="fas fa-times-circle"></i> Overtrading and revenge trading</li>
+                            <li><i class="fas fa-times-circle"></i> Following tips without understanding</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="solution">
+                    <div class="solution-card">
+                        <h3><i class="fas fa-check-circle"></i> Our Proven Solution</h3>
+                        <ul class="solution-list">
+                            <li><i class="fas fa-check-circle"></i> Step-by-step curriculum for all levels</li>
+                            <li><i class="fas fa-check-circle"></i> Psychology & discipline training</li>
+                            <li><i class="fas fa-check-circle"></i> Risk management frameworks</li>
+                            <li><i class="fas fa-check-circle"></i> Live market analysis sessions</li>
+                            <li><i class="fas fa-check-circle"></i> Trade journal & performance tracking</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features & Benefits -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>What You'll Get</h2>
+                <p>Our comprehensive program includes everything you need to trade successfully</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h4>Structured Courses</h4>
+                    <p>From basics to advanced F&O strategies, technical analysis, and fundamental research.</p>
+                    <div class="feature-benefit">
+                        <i class="fas fa-bolt"></i>
+                        <span>Go from beginner to pro in 12 weeks</span>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h4>Live Trading Sessions</h4>
+                    <p>Watch experts trade live and explain their thought process in real-time market conditions.</p>
+                    <div class="feature-benefit">
+                        <i class="fas fa-bolt"></i>
+                        <span>Learn decision-making in live markets</span>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h4>Trade Signals & Alerts</h4>
+                    <p>Get daily trade setups with entry, exit, and stop-loss levels for stocks and F&O.</p>
+                    <div class="feature-benefit">
+                        <i class="fas fa-bolt"></i>
+                        <span>Save 10+ hours of research daily</span>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4>Community & Mentorship</h4>
+                    <p>Join our exclusive community and get 1-on-1 mentorship from professional traders.</p>
+                    <div class="feature-benefit">
+                        <i class="fas fa-bolt"></i>
+                        <span>Network with 50,000+ traders</span>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h4>Trading Tools & Software</h4>
+                    <p>Access proprietary screeners, backtesting tools, and portfolio trackers.</p>
+                    <div class="feature-benefit">
+                        <i class="fas fa-bolt"></i>
+                        <span>Professional tools worth ₹50,000 FREE</span>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Risk Management Framework</h4>
+                    <p>Learn position sizing, stop-loss strategies, and portfolio protection techniques.</p>
+                    <div class="feature-benefit">
+                        <i class="fas fa-bolt"></i>
+                        <span>Protect your capital in volatile markets</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="social-proof" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Success Stories</h2>
+                <p>Join thousands of traders who transformed their financial journey with us</p>
+            </div>
+            
+            <div class="testimonials">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "I went from losing ₹2 lakhs to consistently making ₹50,000-₹1 lakh per month. The F&O strategies alone paid for the course 10 times over in the first 3 months."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h5>Rahul Sharma</h5>
+                            <p>Software Engineer, Trading for 2 years</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "As a complete beginner, I was overwhelmed by the stock market. The structured course and mentorship gave me the confidence to make my first trade. Now I'm managing my own portfolio successfully."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h5>Priya Patel</h5>
+                            <p>Doctor, Started trading 8 months ago</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "The risk management module saved me during the market crash. While others panicked, I protected my capital and even made profits with hedging strategies I learned here."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h5>Amit Verma</h5>
+                            <p>Business Owner, Trading for 3 years</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">50,000+</div>
+                    <div class="stat-text">Traders Trained</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4.9/5</div>
+                    <div class="stat-text">Average Rating</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">₹500Cr+</div>
+                    <div class="stat-text">Collective Profits</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">12+</div>
+                    <div class="stat-text">Years Experience</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Signals -->
+    <section class="trust">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Traders Trust Us</h2>
+                <p>Your security and success are our top priorities</p>
+            </div>
+            
+            <div class="trust-badges">
+                <div class="badge">
+                    <div class="badge-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="badge-text">
+                        <div>100% Secure</div>
+                        <div style="font-size: 0.9rem; font-weight: normal; color: var(--gray);">SSL Encrypted Payments</div>
+                    </div>
+                </div>
+                
+                <div class="badge">
+                    <div class="badge-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="badge-text">
+                        <div>30-Day Guarantee</div>
+                        <div style="font-size: 0.9rem; font-weight: normal; color: var(--gray);">Full Refund If Not Satisfied</div>
+                    </div>
+                </div>
+                
+                <div class="badge">
+                    <div class="badge-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="badge-text">
+                        <div>Certified Mentors</div>
+                        <div style="font-size: 0.9rem; font-weight: normal; color: var(--gray);">SEBI Certified Analysts</div>
+                    </div>
+                </div>
+                
+                <div class="badge">
+                    <div class="badge-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="badge-text">
+                        <div>Privacy Protected</div>
+                        <div style="font-size: 0.9rem; font-weight: normal; color: var(--gray);">We Never Share Your Data</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lead Capture -->
+    <section class="lead-capture" id="lead-form">
+        <div class="container">
+            <div class="lead-container">
+                <div class="section-title">
+                    <h2>Start Your Trading Journey Today</h2>
+                    <p>Get our FREE 90-minute masterclass "3 Proven F&O Strategies That Work in Any Market" when you sign up</p>
+                </div>
+                
+                <div class="lead-form">
+                    <form id="signup-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="experience">Trading Experience</label>
+                                <select id="experience" class="form-control" required>
+                                    <option value="" disabled selected>Select your experience level</option>
+                                    <option value="beginner">Beginner (Just starting)</option>
+                                    <option value="intermediate">Intermediate (Some experience)</option>
+                                    <option value="advanced">Advanced (Regular trader)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="goal">Primary Goal</label>
+                            <select id="goal" class="form-control" required>
+                                <option value="" disabled selected>What do you want to achieve?</option>
+                                <option value="learn">Learn basics of stock market</option>
+                                <option value="income">Generate additional income</option>
+                                <option value="career">Become a full-time trader</option>
+                                <option value="wealth">Build long-term wealth</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 18px; font-size: 1.1rem;">
+                            Get Free Masterclass & Consultation
+                        </button>
+                        
+                        <div class="form-footer">
+                            <p>By signing up, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>. We'll send you the masterclass link immediately.</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Got questions? We've got answers</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do I need any prior experience to join?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No, our program is designed for all levels. We have separate modules for beginners, intermediate, and advanced traders. Beginners start with the basics and progress at their own pace.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How much time do I need to dedicate?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We recommend 8-10 hours per week for optimal results. This includes watching recorded lessons (2-3 hours), attending live sessions (2 hours), and practicing in simulated trading (4-5 hours).</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What is the success rate of your students?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Based on our internal data, 78% of students who complete the program become consistently profitable traders within 6 months. 90% report significantly improved understanding and confidence in trading.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Is there any money-back guarantee?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We offer a 30-day money-back guarantee. If you're not satisfied with the program within the first 30 days, we'll give you a full refund, no questions asked.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you provide trading signals?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, premium members receive daily trade setups with entry, exit, and stop-loss levels. However, we emphasize teaching you how to generate your own signals so you become an independent trader.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="#lead-form" class="btn btn-primary">Ready to Start? Enroll Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>AlphaTrade Pro</h4>
+                    <p>Empowering traders with knowledge, tools, and community since 2012. Join 50,000+ successful traders on their financial journey.</p>
+                    <div style="margin-top: 20px; display: flex; gap: 15px;">
+                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#features">Courses</a></li>
+                        <li><a href="#testimonials">Success Stories</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#lead-form">Free Masterclass</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                        <li><a href="#">Disclaimers</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Contact Info</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope" style="margin-right: 10px;"></i> support@alphatradepro.com</li>
+                        <li><i class="fas fa-phone" style="margin-right: 10px;"></i> +91 98765 43210</li>
+                        <li><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> Mumbai, India</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 AlphaTrade Pro. All rights reserved. | Stock market trading involves risk. Past performance is not indicative of future results.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+        
+        // Form submission
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            
+            // Show success message
+            alert(`Thank you ${name}! Your free masterclass access has been sent to ${email}. Check your email.`);
+            
+            // In a real implementation, you would send this data to your server
+            console.log('Lead captured:', { name, email });
+            
+            // Reset form
+            this.reset();
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if(window.innerWidth <= 768) {
+                        document.querySelector('.nav-links').style.display = 'none';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

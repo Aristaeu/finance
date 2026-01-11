@@ -6,7 +6,7 @@ st.set_page_config(
 )
 
 # Read HTML safely
-with open("finance.html", "r", encoding="utf-8") as file:
+with open("Finance & Investments Landing Page/finance.html", "r", encoding="utf-8") as file:
     html_content = file.read()
 
 # Render HTML
